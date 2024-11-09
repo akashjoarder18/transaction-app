@@ -5,14 +5,25 @@ const prisma = new PrismaClient();
 
 
 
-export async function GET({status, startDate, endDate}) {
+export async function GET(req,res) {
  
-    //const {status, startDate, endDate} = req.query;
+  // Parse query parameters from the URL
+  const { searchParams } = new URL(req.url);
 
+  // Extract parameters from searchParams
+  const status = searchParams.get('status');
+  const type = searchParams.get('type');
+  const startDate = searchParams.get('startDate');
+  const endDate = searchParams.get('endDate');
+   console.log(type);
     const conditions = {}
-  
+    
     if (status) {
       conditions.status = status
+    }
+
+    if (type) {
+      conditions.type = type
     }
   
     if (startDate && endDate) {
