@@ -21,7 +21,7 @@ const SideNav = () => {
       path: "/dashboard/transaction"
     },
     {
-      id:2,
+      id:3,
       name:"User",
       icon: User2Icon,
       path: "/dashboard/users"
