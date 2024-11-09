@@ -40,7 +40,7 @@ const SideNav = () => {
                 gap-2 items-center 
                 border mx-4 my-4 
                 rounded-md hover:bg-primary
-              hover:text-white ${item.path == currentPath} ? "bg-primary text-white":""`)} >
+              hover:text-white ${item.path == currentPath ? "bg-primary text-white":""}`)} >
                  <item.icon/>
                  {item.name}
               </h2>

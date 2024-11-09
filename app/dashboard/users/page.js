@@ -1,12 +1,28 @@
-import React from 'react'
+"use client"
+import GlobalApi from '@/app/_serveces/GlobalApi';
+import React, { useEffect }  from 'react'
+import UserListsTable from './_components/UserListsTable';
+import { useState } from 'react';
 
 const page = () => {
+  const [userLists, setUserLists] = useState([]);
+  useEffect(() => {
+    GetAllUserList();
+  }, []);
+
+  const GetAllUserList = () => {
+    GlobalApi.GetAllUsers().then(res => {
+      console.log(res.data);
+      setUserLists(res.data);
+    })
+  }
   return (
-    <div className="bg-gray-100 flex justify-center min-h-screen">
-            <div className="w-full max-w-5xl mx-4 bg-white my-6 rounded-lg shadow-lg p-8">
-                users
-            </div>
-        </div>
+    <div className='p-7 mb-4'>
+      <h2 className='text-2xl font-bold flex justify-between items-center'>
+        Users
+      </h2>
+      <UserListsTable userLists={userLists} fetchData={GetAllUserList} />
+    </div>
   )
 }
 
