@@ -35,12 +35,12 @@ const SideNav = () => {
         {
           menuLink.map((item,index)=>(
             <Link href={item.path} key={item.id}>
-              <h2 className={
+              <h2 className={(
                 `flex px-4 py-4 
                 gap-2 items-center 
                 border mx-4 my-4 
                 rounded-md hover:bg-primary
-              hover:text-white ${item.path == currentPath} ? "bg-primary text-white":""`} >
+              hover:text-white ${item.path == currentPath} ? "bg-primary text-white":""`)} >
                  <item.icon/>
                  {item.name}
               </h2>
