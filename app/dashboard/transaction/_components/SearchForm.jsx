@@ -1,7 +1,7 @@
 "use client"
 import { Button } from '@/components/ui/button';
 import React, { useState } from 'react'
-
+import dynamic from "next/dynamic";
 
 
 
@@ -89,4 +89,4 @@ const SearchForm = ({ onFilter }) => {
     )
 }
 
-export default SearchForm
+export default dynamic (() => Promise.resolve(SearchForm), {ssr: false})

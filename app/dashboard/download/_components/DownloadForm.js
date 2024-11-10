@@ -2,6 +2,7 @@
 import GlobalApi from '@/app/_serveces/GlobalApi';
 import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react'
+import dynamic from "next/dynamic";
 
 const DownloadForm = ({ onDownload }) => {
     const today = new Date();
@@ -108,5 +109,4 @@ const DownloadForm = ({ onDownload }) => {
     )
 }
 
-export default DownloadForm
-
+export default dynamic (() => Promise.resolve(DownloadForm), {ssr: false})

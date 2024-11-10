@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import React from 'react'
+import dynamic from "next/dynamic";
+
 
 const SideNav = () => {
   const currentPath = usePathname();
@@ -65,4 +67,5 @@ const SideNav = () => {
   )
 }
 
-export default SideNav
+export default dynamic (() => Promise.resolve(SideNav), {ssr: false})
+
