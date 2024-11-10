@@ -13,11 +13,6 @@ export async function POST(request) {
   const data = await request.json();
 
 
-  // Extract parameters from searchParams
-  // const status = searchParams.get('status');
-  // const type = searchParams.get('type');
-  // const startDate = searchParams.get('startDate');
-  // const endDate = searchParams.get('endDate');
   const { startDate, endDate, type, status } = data
 
   const conditions = {}
@@ -75,11 +70,10 @@ export async function POST(request) {
         path: `/downloads/${fileName}`,  // Save relative path
         type: type,                         // File type can be dynamic based on your requirements
         status: status,                         // File type can be dynamic based on your requirements
-        range: '',                         // File type can be dynamic based on your requirements
+        range: startDate+" To "+endDate,                         // File type can be dynamic based on your requirements
       },
     });
 
-    // Respond with the download metadata
     return NextResponse.json(newDownload);
   } catch (error) {
     console.error("Error handling file download and database save:", error);
@@ -95,6 +89,7 @@ export async function GET() {
             orderBy: {
                 id: 'desc', 
               },
+              take: 10,
         }            
         );
         console.log(download);

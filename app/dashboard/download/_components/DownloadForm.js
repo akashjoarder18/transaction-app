@@ -4,47 +4,51 @@ import { Button } from '@/components/ui/button';
 import React, { useEffect, useState } from 'react'
 
 const DownloadForm = ({ onDownload }) => {
+    const today = new Date();
+    const oneWeekAgo = new Date();
+    oneWeekAgo.setDate(today.getDate() - 7);
     const [filters, setFilters] = useState({});
     const [filterData, setFilterData] = useState({
-        startDate: '',
-        endDate: '',
+        startDate: oneWeekAgo.toISOString().split('T')[0],
+        endDate: today.toISOString().split('T')[0],
         status: '',
         type: '',
-      });
+    });
 
     const handleChange = (event) => {
         setFilterData((prevState) => ({
-          ...prevState,
-          [event.target.name]: event.target.value,
+            ...prevState,
+            [event.target.name]: event.target.value,
         }));
-      };
-    
-      useEffect(() => {
-        fetchData();
-    }, [filters]);
+    };
 
-  
+    useEffect(() => {
+        fetchData();
+    }, [filterData]);
+
+
 
     const fetchData = async () => {
-        
-        GlobalApi.DownloadTransactionSearch(filters).then((res)=>{
-            if(res.data){
-                onDownload();
+
+        GlobalApi.DownloadTransactionSearch(filterData).then((res) => {
+            if (res.data) {
                 //setRecords(res.data);
             }
         })
-       
-    }  
+
+    }
 
     const handleSearch = (e) => {
         e.preventDefault();
         const newUser = {
             ...filterData,
-          };
-          setFilters(newUser);
+        };
+            
+        onDownload(newUser);
+
 
     };
-    
+
     return (
         <div>
             <form onSubmit={handleSearch} className="flex gap-2 items-center">
@@ -72,7 +76,7 @@ const DownloadForm = ({ onDownload }) => {
                         />
                     </div>
                     <div className="relative w-full max-w-sm">
-                      
+
                         <select id='status' name='status' onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" >
                             <option value="">Status</option>
                             <option value="completed">Completed</option>
@@ -80,14 +84,14 @@ const DownloadForm = ({ onDownload }) => {
                         </select>
                     </div>
                     <div className="relative w-full max-w-sm">
-                    <select id='type' name='type' onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" >
+                        <select id='type' name='type' onChange={handleChange} className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" >
                             <option value="">Type</option>
                             <option value="buy">Buy</option>
                             <option value="sell">Sell</option>
                             <option value="deposit">Deposit</option>
                             <option value="withdrawal">Withdrawal</option>
                         </select>
-                      
+
                     </div>
                     <Button
                         type="submit"
