@@ -1,11 +1,10 @@
 "use client"
+import GlobalApi from '@/app/_serveces/GlobalApi';
 import { Button } from '@/components/ui/button';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-
-
-
-const SearchForm = ({ onFilter }) => {
+const DownloadForm = ({ onDownload }) => {
+    const [filters, setFilters] = useState({});
     const [filterData, setFilterData] = useState({
         startDate: '',
         endDate: '',
@@ -19,15 +18,30 @@ const SearchForm = ({ onFilter }) => {
           [event.target.name]: event.target.value,
         }));
       };
-      
+    
+      useEffect(() => {
+        fetchData();
+    }, [filters]);
+
+  
+
+    const fetchData = async () => {
+        
+        GlobalApi.DownloadTransactionSearch(filters).then((res)=>{
+            if(res.data){
+                onDownload();
+                //setRecords(res.data);
+            }
+        })
+       
+    }  
 
     const handleSearch = (e) => {
         e.preventDefault();
         const newUser = {
             ...filterData,
           };
-        onFilter(newUser);
-
+          setFilters(newUser);
 
     };
     
@@ -79,7 +93,7 @@ const SearchForm = ({ onFilter }) => {
                         type="submit"
                         className="px-6 py-2 bg-blue-500 text-white rounded"
                     >
-                        Search
+                        Backend File Download
                     </Button>
 
                 </div>
@@ -89,4 +103,5 @@ const SearchForm = ({ onFilter }) => {
     )
 }
 
-export default SearchForm
+export default DownloadForm
+

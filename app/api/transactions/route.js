@@ -9,13 +9,14 @@ export async function GET(req,res) {
  
   // Parse query parameters from the URL
   const { searchParams } = new URL(req.url);
-
+  
+ 
   // Extract parameters from searchParams
   const status = searchParams.get('status');
   const type = searchParams.get('type');
   const startDate = searchParams.get('startDate');
   const endDate = searchParams.get('endDate');
-   console.log(type);
+  console.log(status);
     const conditions = {}
     
     if (status) {

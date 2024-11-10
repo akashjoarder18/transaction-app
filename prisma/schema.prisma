@@ -33,3 +33,14 @@ model Transaction {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Download {
+  id        Int      @id @default(autoincrement())
+  range     String?
+  type      String?
+  status    String?
+  path      String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

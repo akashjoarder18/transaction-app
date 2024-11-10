@@ -11,13 +11,17 @@ const page = () => {
         fetchData();
     }, [filters]);
 
-    const fetchData = () => {
-        GlobalApi.GetTransactionSearch(filters).then((res) => {
-            console.log(res.data);
-            setRecords(res.data);
-            console.log(records);
+    const fetchData = async () => {
+        
+        GlobalApi.GetTransactionSearch(filters).then((res)=>{
+            if(res){
+                setRecords(res.data);
+            }
         })
+       
     }
+
+     
     return (
         <div className="bg-gray-100 flex justify-center min-h-screen">
             <div className="w-full max-w-5xl mx-4 bg-white my-6 rounded-lg shadow-lg p-8">

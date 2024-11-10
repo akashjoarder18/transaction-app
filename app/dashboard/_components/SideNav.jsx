@@ -1,5 +1,5 @@
 "use client"
-import { BookDashed, HomeIcon, User2Icon } from 'lucide-react'
+import { BookDashed, DownloadIcon, HomeIcon, User2Icon } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -16,12 +16,18 @@ const SideNav = () => {
     },
     {
       id:2,
-      name:"Transaction",
+      name:"Transaction List Search",
       icon: BookDashed,
       path: "/dashboard/transaction"
     },
     {
       id:3,
+      name:"Download And History",
+      icon: DownloadIcon,
+      path: "/dashboard/download"
+    },
+    {
+      id:4,
       name:"User",
       icon: User2Icon,
       path: "/dashboard/users"
@@ -31,7 +37,7 @@ const SideNav = () => {
     <div className='h-screen shadow-md flex flex-col relative'>
       <Image className='mx-auto py-4' src='/logo.svg' width={180} height={80} alt='logo' />
       <hr />
-      <div>
+      <div className='text-sm'>
         {
           menuLink.map((item,index)=>(
             <Link href={item.path} key={item.id}>
