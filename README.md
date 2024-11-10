@@ -37,14 +37,15 @@ Copy code
 cp .env.example .env
 Open the .env file and update the DATABASE_URL variable with your PostgreSQL credentials:
 
-env
+# env
 Copy code
 DATABASE_URL="postgresql://username:password@localhost:5432/my_database"
 Replace username, password, localhost, 5432, and my_database with your PostgreSQL information.
 
+# Prisma
 5. Run Prisma Migrations
 After setting up the environment variables, apply the Prisma migrations to set up the database schema:
-bash
+
 Copy code
 npx prisma migrate deploy
 This command will execute any migrations that have been created for the project.
@@ -58,7 +59,7 @@ npx prisma generate
 7. Start the Development Server
 Finally, run the development server:
 
-bash
+# bash
 Copy code
 npm run dev
 Open your browser and navigate to http://localhost:3000 to view the application.
@@ -66,7 +67,7 @@ Open your browser and navigate to http://localhost:3000 to view the application.
 Additional Notes
 Seeding the Database: If the project requires initial data, check if it has a seeding script (usually in prisma/seed.js). Run it with:
 
-bash
+# seed
 Copy code
 npx prisma db seed
 Testing API Routes: You can test the API endpoints with tools like Postman or directly from the application’s frontend.
