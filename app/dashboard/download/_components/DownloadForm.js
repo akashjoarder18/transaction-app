@@ -7,6 +7,7 @@ const DownloadForm = ({ onDownload }) => {
     const today = new Date();
     const oneWeekAgo = new Date();
     oneWeekAgo.setDate(today.getDate() - 7);
+    
     const [filters, setFilters] = useState({});
     const [filterData, setFilterData] = useState({
         startDate: oneWeekAgo.toISOString().split('T')[0],

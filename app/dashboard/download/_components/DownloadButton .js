@@ -1,6 +1,9 @@
-// components/DownloadButton.js
+
+
 const DownloadButton = ({path}) => {
+ 
     const handleDownload = () => {
+      
       // Specify the path to your CSV file in the public directory
       const filePath = path;
       
@@ -19,7 +22,9 @@ const DownloadButton = ({path}) => {
         className="px-4 py-2 bg-blue-600 text-white rounded-md"
       >
         Download CSV
+        
       </button>
+      
     );
   };
   
