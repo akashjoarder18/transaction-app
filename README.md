@@ -6,28 +6,33 @@ First, run the development server:
 follow these steps:
 
 1. Clone the Repository
-First, clone the project repository to your local machine:
-bash
+--First, clone the project repository to your local machine:
+# bash
 Copy code
-git clone <repository-url>
+git clone [(https://github.com/akashjoarder18/transaction-app.git)]
 cd <project-folder>
+
 2. Install Dependencies
-Install all necessary packages by running:
+--Install all necessary packages by running:
 bash
 Copy code
 npm install
+
+
 3. Set Up PostgreSQL Database
-Make sure PostgreSQL is installed and running on your machine.
-If the project has specific database setup instructions (such as creating specific tables), refer to the project’s documentation.
+--Make sure PostgreSQL is installed and running on your machine.
+--If the project has specific database setup instructions (such as creating specific tables), refer to the --project’s documentation.
+
 Create a PostgreSQL database for this project:
-sql
+# sql
 Copy code
 CREATE DATABASE my_database;
 Replace my_database with the name expected by the project.
+
 4. Configure Environment Variables
 The project should contain an .env.example file. Copy this file to create your own .env file:
 
-bash
+# bash
 Copy code
 cp .env.example .env
 Open the .env file and update the DATABASE_URL variable with your PostgreSQL credentials:
@@ -43,11 +48,13 @@ bash
 Copy code
 npx prisma migrate deploy
 This command will execute any migrations that have been created for the project.
+
 6. Generate Prisma Client
 Run this command to ensure the Prisma Client is up to date with the database schema:
 bash
 Copy code
 npx prisma generate
+
 7. Start the Development Server
 Finally, run the development server:
 
